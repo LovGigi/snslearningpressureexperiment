@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta
+      http-equiv="Content-Type"
+      content="text/html; charset=utf-8"
+      charset="utf-8"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Facebook Group Post</title>
+    <style>
+      /* 基本样式 */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f2f5;
+      }
+
+      /* 主容器 */
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border: 1px solid #dddfe2;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      /* 头部样式 */
+      .header {
+        padding: 12px;
+        border-bottom: 1px solid #dddfe2;
+      }
+
+      /* 帖子样式 */
+      .post {
+        padding: 12px;
+      }
+
+      .post-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #dddfe2;
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #ffffff;
+      }
+
+      .post-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .post-author {
+        font-weight: bold;
+      }
+
+      .post-time {
+        color: #65676b;
+        font-size: 12px;
+        font-weight: 700;
+        padding-top: 5px;
+      }
+
+      .post-content {
+        margin-bottom: 10px;
+      }
+
+      .post-content p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .post-image {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+
+      /* 负面评论部分 */
+      .negative-comments {
+        background-color: #f0f2f5;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+      }
+
+      .learn-more-button {
+        background-color: #e4e6eb;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .negative-examples {
+        display: none;
+        margin-top: 10px;
+      }
+
+      /* 帖子统计 */
+      .post-stats {
+        display: flex;
+        justify-content: space-between;
+        color: #65676b;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .reactions {
+        display: flex;
+        align-items: center;
+      }
+
+      .reaction-icons {
+        display: flex;
+        margin-right: 5px;
+      }
+
+      .reaction-icon {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 2px solid white;
+        margin-right: -5px;
+      }
+
+      /* 帖子操作按钮 */
+      .post-actions {
+        display: flex;
+        justify-content: space-around;
+        border-top: 1px solid #dddfe2;
+        padding-top: 10px;
+      }
+
+      .action-button {
+        background: none;
+        border: none;
+        color: #65676b;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+      }
+
+      .action-icon {
+        margin-right: 5px;
+      }
+
+      .iconfont {
+        background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/yx/r/u2mBlwvbHUc.png");
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        width: 19px;
+        height: 19px;
+        background-repeat: no-repeat;
+        display: inline-block;
+        background-size: 21px 1235px;
+      }
+
+      .icon-diqiu {
+        background-position: 0px -588px;
+      }
+
+      .icon-chat-3-line {
+        background-position: 0px -588px;
+      }
+
+      .icon-chat-3-fill {
+        background-position: 0px -1200px;
+      }
+
+      .icon-dianhua-quan {
+        background-position: 0px -441px;
+      }
+
+      .icon-fenxiang1 {
+        background-position: 0px -1217px;
+      }
+
+      .icon-kehupingjia {
+        background-position: 0px -798px;
+      }
+
+      .icon-fenxiang {
+        background-position: 0px -924px;
+      }
+
+      /* flex布局垂直居中 */
+      .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      i {
+        font-style: normal;
+      }
+
+      .blue {
+        color: #1f5bc7;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Facebook 帖子的主容器 -->
+    <div class="container">
+      <!-- 带有群组信息和标签的头部部分 -->
+      <div class="header">
+
+      <!-- 帖子的主要内容 -->
+      <div class="post">
+        <!-- 帖子头部，包含作者信息 -->
+        <div class="post-header">
+          <div class="profile-pic" id="profilePic"></div>
+          <div class="post-info">
+            <span class="post-author"
+              >Noobass FK ·<i class="blue"> Follow</i></span
+            >
+            <span
+              class="post-time flex-center"
+              style="justify-content: flex-start"
+              >23 hours ago ·
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-globe-asia-australia"
+                viewBox="0 0 16 16"
+                style="margin-left: 5px"
+              >
+                <path
+                  d="m10.495 6.92 1.278-.619a.483.483 0 0 0 .126-.782c-.252-.244-.682-.139-.932.107-.23.226-.513.373-.816.53l-.102.054c-.338.178-.264.626.1.736a.476.476 0 0 0 .346-.027ZM7.741 9.808V9.78a.413.413 0 1 1 .783.183l-.22.443a.602.602 0 0 1-.12.167l-.193.185a.36.36 0 1 1-.5-.516l.112-.108a.453.453 0 0 0 .138-.326ZM5.672 12.5l.482.233A.386.386 0 1 0 6.32 12h-.416a.702.702 0 0 1-.419-.139l-.277-.206a.302.302 0 1 0-.298.52l.761.325Z"
+                />
+                <path
+                  d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM1.612 10.867l.756-1.288a1 1 0 0 1 1.545-.225l1.074 1.005a.986.986 0 0 0 1.36-.011l.038-.037a.882.882 0 0 0 .26-.755c-.075-.548.37-1.033.92-1.099.728-.086 1.587-.324 1.728-.957.086-.386-.114-.83-.361-1.2-.207-.312 0-.8.374-.8.123 0 .24-.055.318-.15l.393-.474c.196-.237.491-.368.797-.403.554-.064 1.407-.277 1.583-.973.098-.391-.192-.634-.484-.88-.254-.212-.51-.426-.515-.741a6.998 6.998 0 0 1 3.425 7.692 1.015 1.015 0 0 0-.087-.063l-.316-.204a1 1 0 0 0-.977-.06l-.169.082a1 1 0 0 1-.741.051l-1.021-.329A1 1 0 0 0 11.205 9h-.165a1 1 0 0 0-.945.674l-.172.499a1 1 0 0 1-.404.514l-.802.518a1 1 0 0 0-.458.84v.455a1 1 0 0 0 1 1h.257a1 1 0 0 1 .542.16l.762.49a.998.998 0 0 0 .283.126 7.001 7.001 0 0 1-9.49-3.409Z"
+                />
+              </svg>
+          </div>
+        </div>
+        <!-- 帖子文本内容 -->
+        <div class="post-content">
+          <p>
+            Got a major case of the study blues, fam😭 My school workload has 
+            been absolutely rushing me lately. I can barely keep up. I almost 
+            failed my math exam😭.
+          </p>
+        </div>
+        <!-- 帖子图片（占位符） -->
+        <img
+          src="https://www.xwtxblog.com/upload/fidgety.jpg"
+          alt="Weight loss image"
+          class="post-image"
+        />
+        <!-- 负面评论部分 -->
+        <div class="negative-comments">
+          <p style="margin: 10px 0">
+            The user has received 382 negative comments.
+          </p>
+          <button class="learn-more-button" onclick="toggleNegativeExamples()">
+            Select to learn more
+          </button>
+          <div class="negative-examples" id="negativeExamples">
+            <p style="margin: 0">Examples of negative comments:</p>
+            <ol style="margin: 5px 0; line-height: 1.5em; font-size: 15px">
+              <li>
+                You have failed such a simple exam???
+              </li>
+              <li>
+                Poor guy, you will definitely not be able to get into college in the future.
+              </li>
+              <li>
+                Stupid! You are indeed a scumbag! Hahaha!
+            </ol>
+          </div>
+          <p style="margin: 10px 0; font-size: 12px; color: gray">
+            <i>AI-generated from the text of user comments.</i>
+          </p>
+        </div>
+
+        <!-- 帖子统计（反应、评论、分享） -->
+        <div class="post-stats">
+          <div class="reactions">
+            <div class="reaction-icons">
+              <img
+                class="reaction-icon"
+                src="https://static.xx.fbcdn.net/rsrc.php/v3/yE/r/lKU_lVxpCwf.png"
+                style="z-index: 9999"
+              />
+              <img
+                class="reaction-icon"
+                src="https://static.xx.fbcdn.net/rsrc.php/v3/y0/r/SB64F5hp5Xq.png"
+                style="z-index: 999"
+              />
+              <img
+                class="reaction-icon"
+                src="https://static.xx.fbcdn.net/rsrc.php/v3/yJ/r/PAxXaPNoEOf.png"
+                style="z-index: 1"
+              />
+            </div>
+            <!-- 点赞数 -->
+            287
+          </div>
+          <div class="flex-center">
+            <!-- 评论数 -->
+            <span class="flex-center"
+              >1273
+              <i class="iconfont icon-chat-3-fill" style="margin: 0 2px"></i
+            ></span>
+            <!-- 转发数 -->
+            <span class="flex-center"
+              >59 <i class="iconfont icon-fenxiang1" style="margin: 0 2px"></i
+            ></span>
+          </div>
+        </div>
+        <!-- 帖子操作按钮 -->
+        <div class="post-actions">
+          <button class="action-button flex-center">
+            <i class="action-icon iconfont icon-kehupingjia"></i> Like
+          </button>
+          <button class="action-button flex-center">
+            <i class="action-icon iconfont icon-chat-3-line"></i>
+            Comment
+          </button>
+          <button class="action-button flex-center">
+            <i class="action-icon iconfont icon-dianhua-quan"></i> Send
+          </button>
+          <button class="action-button flex-center">
+            <i class="action-icon iconfont icon-fenxiang"></i> Share
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 生成随机头像的函数
+      function generateProfilePic() {
+        const colors = [
+          "#1877f2",
+          "#e41e3f",
+          "#f7b125",
+          "#45bd62",
+          "#1d4292",
+          "#ff6b01",
+        ];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const initials = "NF";
+
+        const profilePic = document.getElementById("profilePic");
+        profilePic.style.backgroundColor = randomColor;
+        profilePic.textContent = initials;
+      }
+
+      // 切换负面评论示例可见性的函数
+      function toggleNegativeExamples() {
+        const negativeExamples = document.getElementById("negativeExamples");
+        console.log(negativeExamples.style.display);
+        negativeExamples.style.display =
+          negativeExamples.style.display === "none" ||
+          negativeExamples.style.display === ""
+            ? "block"
+            : "none";
+
+        console.log(negativeExamples.style.display);
+      }
+
+      // 页面加载时生成随机头像
+      window.onload = generateProfilePic;
+    </script>
+  </body>
+</html>
